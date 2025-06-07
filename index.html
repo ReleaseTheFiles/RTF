@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTF - Release The Files</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #18181b 0%, #23232a 100%);
+            color: #e5e5e5;
+            line-height: 1.7;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+        /* Topbar styles */
+        .topbar {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(24,24,27,0.98);
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,0.18);
+            border-bottom: 2px solid #23232a;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
+        .topbar-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 32px;
+            height: 56px;
+        }
+        .twitter-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #23232a;
+            color: #e5e5e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.4rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+            text-decoration: none;
+        }
+        .twitter-btn:hover {
+            background: #e5e5e5;
+            color: #18181b;
+            box-shadow: 0 4px 16px 0 rgba(0,0,0,0.22);
+        }
+        header {
+            background: none;
+            padding: 48px 20px 20px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header-img {
+            width: 140px;
+            height: auto;
+            margin-bottom: 14px;
+            filter: grayscale(100%) drop-shadow(0 2px 16px #000);
+            border-radius: 18px;
+            background: #23232a;
+            box-shadow: 0 4px 32px 0 rgba(0,0,0,0.25);
+        }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #e5e5e5;
+            text-shadow: 0 2px 16px #000, 0 0 2px #fff1;
+            margin-top: 10px;
+        }
+        .ca-highlight {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 32px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #18181b;
+            background: linear-gradient(90deg, #e5e5e5 60%, #444 100%);
+            border: none;
+            border-radius: 22px;
+            box-shadow: 0 2px 16px 0 #0008, 0 0 0 2px #4444;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .ca-highlight:hover {
+            background: linear-gradient(90deg, #444 60%, #e5e5e5 100%);
+            color: #e5e5e5;
+            box-shadow: 0 4px 24px 0 #000b;
+        }
+        main {
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            padding: 0 20px 40px 20px;
+            background: rgba(24,24,27,0.92);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.22);
+            position: relative;
+            z-index: 1;
+        }
+        section.petition-count {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        section.petition-count h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #e5e5e5;
+            font-weight: 700;
+            text-shadow: 0 2px 8px #000a;
+        }
+        section.petition-count span {
+            display: inline-block;
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: #23232a;
+            padding: 6px 22px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px #000a;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-left: 4px solid #444;
+            padding-left: 12px;
+            color: #e5e5e5;
+            font-weight: 600;
+            text-shadow: 0 2px 8px #000a;
+        }
+        section p, section ol {
+            font-size: 1.08rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        section ol {
+            padding-left: 28px;
+        }
+        section ol li {
+            margin-bottom: 10px;
+        }
+        .button, .sign-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(90deg, #23232a 60%, #444 100%);
+            color: #e5e5e5;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 24px;
+            font-size: 1.15rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 2px 12px 0 #000a;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .button:hover, .sign-btn:hover {
+            background: linear-gradient(90deg, #444 60%, #23232a 100%);
+            color: #fff;
+            box-shadow: 0 4px 24px 0 #000c;
+        }
+        .sign-btn {
+            margin-left: 10px;
+            background: linear-gradient(90deg, #18181b 60%, #444 100%);
+            color: #e5e5e5;
+        }
+        .sign-btn:hover {
+            background: linear-gradient(90deg, #444 60%, #18181b 100%);
+            color: #fff;
+        }
+        .signed-message {
+            display: none;
+            margin-top: 18px;
+            color: #e5e5e5;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            animation: fadeIn 0.8s;
+            text-shadow: 0 2px 8px #000a;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        footer {
+            background-color: #23232a;
+            padding: 24px;
+            text-align: center;
+            font-size: 1rem;
+            color: #888;
+            border-radius: 0 0 18px 18px;
+            margin-top: 40px;
+            box-shadow: 0 -2px 16px 0 #0004;
+        }
+        /* Aesthetic background text */
+        .moving-bg-text {
+            position: fixed;
+            top: 38%;
+            left: -50%;
+            width: 200%;
+            font-size: 7vw;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 8px #000, 0 0 20px #23232a;
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+            animation: move-bg-text 22s linear infinite;
+            font-family: 'Trebuchet MS', Verdana, Arial, Helvetica, sans-serif;
+            background: linear-gradient(90deg, #23232a 30%, #444 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes move-bg-text {
+            0% { left: -50%; }
+            100% { left: 0%; }
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            main { padding: 0 4vw 40px 4vw; }
+            .moving-bg-text { font-size: 12vw; }
+            .topbar-content { padding: 0 10px; }
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .moving-bg-text { font-size: 18vw; }
+            .button, .sign-btn, .ca-highlight { padding: 10px 16px; font-size: 1rem; }
+            section.petition-count span { font-size: 1.2rem; }
+            .header-img { width: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-content">
+            <a href="https://x.com/elonmusk" class="twitter-btn" target="_blank" rel="noopener" aria-label="Twitter/X">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+    <!-- Animated background text -->
+    <div class="moving-bg-text">Flat Chested Community</div>
+    <header>
+        <img src="https://i.ibb.co/1fqrGBDF/rtfrtf.png" alt="rtfrtf" class="header-img" />
+        <h1>RTF - Release The Files</h1>
+        <button class="ca-highlight" disabled>CA: TBA</button>
+    </header>
+    <main>
+        <section class="petition-count">
+            <h2>Petition Signatures</h2>
+            <span id="signature-count">1,523 and counting</span>
+        </section>
+
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>We, the undersigned citizens of this nation, formally request the immediate disclosure of all files related to <strong>[Subject Matter]</strong>. Transparency is the cornerstone of public trust and democratic governance. Withholding these documents without compelling legal grounds undermines our rights under the Freedom of Information Act and equivalent statutes.</p>
+        </section>
+
+        <section class="background">
+            <h2>Background</h2>
+            <p>Under federal and state open-records laws, every citizen is entitled to access government-held information, except where narrowly defined exemptions apply. Despite repeated requests, these files remain classified or redacted without a clear demonstration of necessity. This lack of accountability erodes confidence in our institutions.</p>
+        </section>
+
+        <section class="action">
+            <h2>Requested Action</h2>
+            <p>We therefore call upon the responsible agencies to:</p>
+            <ol>
+                <li>Release the full, unredacted files to the public record portal within 30 days.</li>
+                <li>Provide an official justification for any redactions, citing specific legal exemptions.</li>
+                <li>Commit to timely compliance with future FOIA requests and related statutes.</li>
+            </ol>
+            <button class="button" id="sign-btn-main"><i class="fas fa-pen-nib"></i> Sign the Petition</button>
+            <button class="sign-btn" id="sign-btn-alt"><i class="fas fa-user-secret"></i> Sign Anonymously</button>
+            <div class="signed-message" id="signed-message">Thank you for signing the petition!</div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Release The Files Campaign. All rights reserved.
+    </footer>
+    <script>
+        // Petition sign button logic
+        const signBtnMain = document.getElementById('sign-btn-main');
+        const signBtnAlt = document.getElementById('sign-btn-alt');
+        const signedMsg = document.getElementById('signed-message');
+        const sigCount = document.getElementById('signature-count');
+        let signed = false;
+        let count = 1523;
+
+        function signPetition() {
+            if (!signed) {
+                signed = true;
+                count++;
+                sigCount.textContent = count.toLocaleString() + " and counting";
+                signedMsg.style.display = 'block';
+                setTimeout(() => { signedMsg.style.display = 'none'; }, 3500);
+            }
+        }
+
+        signBtnMain.addEventListener('click', signPetition);
+        signBtnAlt.addEventListener('click', signPetition);
+    </script>
+</body>
+</html>
